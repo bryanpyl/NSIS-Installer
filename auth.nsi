@@ -111,7 +111,7 @@ FunctionEnd
 ;-------------------------------------------
 Function Login
   SetOutPath $INSTDIR
-  File "C:\Users\user\OneDrive\Desktop\SAINS\Week 3\3.8.2023\dist\authenticate2.exe"
+  File "C:\Users\user\OneDrive\Desktop\SAINS\Week 3\NSIS-Installer\dist\authenticate2.exe"
   nsDialogs::Create 1018
   Pop $Dialog
 
@@ -165,20 +165,20 @@ Function Login_leave
     ${StrContains} $0 "SUCCESS" $1
     StrCmp $0 "" notfound1
         MessageBox MB_OK 'Authentication successful.'
-        nsExec::ExecToStack 'cmd.exe /C ""$INSTDIR\authenticate.exe" start"'
+        nsExec::ExecToStack 'cmd.exe /C ""$INSTDIR\authenticate2.exe" start"'
 
     notfound1:
     ${StrContains} $0 "FAILURE" $1
     StrCmp $0 "" notfound2
         MessageBox MB_OK 'Wrong credentials. Please try again.'
-        nsExec::ExecToStack 'cmd.exe /C ""$INSTDIR\authenticate.exe" remove"'
+        nsExec::ExecToStack 'cmd.exe /C ""$INSTDIR\authenticate2.exe" remove"'
         Abort
     
     notfound2:
     ${StrContains} $0 "EMPTY" $1
     StrCmp $0 "" notfound3
         MessageBox MB_OK 'Username and password field cannot be empty.'
-        nsExec::ExecToStack 'cmd.exe /C ""$INSTDIR\authenticate.exe" remove"'
+        nsExec::ExecToStack 'cmd.exe /C ""$INSTDIR\authenticate2.exe" remove"'
         Abort
 
      notfound3:
